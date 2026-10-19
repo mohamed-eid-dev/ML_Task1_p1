@@ -314,16 +314,33 @@ Install the environment and dependencies:
 uv sync
 ```
 
-Run the production application:
+Optional: copy the environment settings:
 
 ```bash
-uv run python -m production_app.main
+cp .env.example .env
+```
+
+You can leave `.env` missing; the application uses the defaults.
+
+## Run it (2 commands)
+
+**1. Train once and save the model:**
+
+```bash
+uv run python run.py train
+```
+This creates `models/pipeline.joblib`.
+
+**2. Predict using the SAVED model:**
+
+```bash
+uv run python run.py predict
 ```
 
 The model artifact must exist at:
 
 ```text
-models/logistic_regression_pipeline.joblib
+models/pipeline.joblib
 ```
 
 ## Reproducing the Model

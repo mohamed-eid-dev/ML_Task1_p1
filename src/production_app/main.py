@@ -1,26 +1,27 @@
 import logging
 
-from production_app.config import load_settings
-from production_app.logging_config import configure_logging
-from production_app.model_service import load_model
+from production_app.data import load_data, split_data
+from production_app.evaluation import evaluate_model
+from production_app.model_service import load_model, predict, save_model
+from production_app.training import train_model
 
 logger = logging.getLogger(__name__)
 
 
-def main() -> None:
-    """Run the production application."""
-    settings = load_settings()
-    configure_logging(settings.log_level)
+def train_workflow() -> None:
+    X, y = load_data()
+    X_train, X_test, y_train, y_test = split_data(X, y)
 
-    logger.info(
-        "Application started in %s mode",
-        settings.app_env,
-    )
-
-    model = load_model(settings.model_path)
-
-    logger.info("Model loaded successfully: %s", settings.model_path)
+    model = train_model(X_train, y_train)
+    evaluate_model(model, X_test, y_test)
+    save_model(model)
 
 
-if __name__ == "__main__":
-    main()
+def predict_workflow() -> None:
+    model = load_model()  # Only loads the saved model: no model.fit() here.
+    X, _ = load_data()
+    sample = X.iloc[[0]]  # One sample row, just for demonstration.
+
+    result = predict(model, sample)
+    class_names = {0: "malignant", 1: "benign"}
+    logger.info("Sample 0 result: %s", class_names[result])
