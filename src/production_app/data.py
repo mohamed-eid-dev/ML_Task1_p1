@@ -22,12 +22,19 @@ def load_data() -> tuple[pd.DataFrame, pd.Series]:
 def split_data(
     x: pd.DataFrame, y: pd.Series
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+
+    settings = load_settings()
+
+    x = x.loc[:, settings.selected_features]
+
     X_train, X_test, y_train, y_test = train_test_split(
         x,
         y,
-        test_size=load_settings.test_size,
-        random_state=load_settings.random_state,
+        test_size=settings.test_size,
+        random_state=settings.random_state,
         stratify=y,
     )
-    logger.info(f"Training rows: { len(X_train)} | Testing rows: { len(X_test)}")
+
+    logger.info(f"Training rows: {len(X_train)} | Testing rows: {len(X_test)}")
+
     return X_train, X_test, y_train, y_test
