@@ -2,7 +2,7 @@ import logging
 import sys
 
 from production_app.logging_config import configure_logging
-from production_app.main import predict_workflow, train_workflow
+from model_train import predict_workflow, train_workflow
 
 
 def main() -> int:
@@ -19,6 +19,7 @@ def main() -> int:
     except (FileNotFoundError, ValueError) as error:
         logging.error("%s", error)
         return 1
+
     return 0
 
 
