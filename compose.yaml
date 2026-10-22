@@ -1,0 +1,23 @@
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: breast_cancer_api
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+      - DATA_PATH=""
+      - MODEL_PATH=models\pipeline.joblib
+    restart: unless-stopped
+  ui:
+    build: 
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: breast_cancer_ui
+    ports:
+      - "127.0.0.1:8501:8501"
+    environment:
+      - API_URL=http://api:8000
+    restart: unless-stopped

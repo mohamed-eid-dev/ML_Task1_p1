@@ -1,0 +1,19 @@
+FROM registry.redhat.io/ubi8/python-312-minimal:latest
+
+RUN useradd -m -u 1001 app_user
+
+WORKDIR /app
+
+COPY requirement.txt .
+
+RUN pip install --no-cache-dir -r requirement.txt 
+
+COPY --chown=app_user:app_user src/production_app/ ./production_app/
+
+COPY --chown=app_user:app_user ui/ ./ui/
+
+USER 1001
+
+EXPOSE 8501
+
+CMD [ "streamlit","run","ui/streamlit_app.py","--server.address","0.0.0.0","--server.port","8501" ]

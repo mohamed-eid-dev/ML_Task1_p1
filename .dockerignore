@@ -1,0 +1,85 @@
+# ================================
+# Virtual environments
+# ================================
+.venv/
+venv/
+env/
+
+# ================================
+# Environment variables / secrets
+# ================================
+.env
+
+# ================================
+# Python cache
+# ================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ================================
+# Jupyter Notebook
+# ================================
+.ipynb_checkpoints/
+notebook/
+
+# ================================
+# Testing / Coverage
+# ================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ================================
+# Code quality / tooling caches
+# ================================
+.ruff_cache/
+.mypy_cache/
+
+# ================================
+# IDE settings
+# ================================
+.vscode/
+.idea/
+
+# ================================
+# Git
+# ================================
+.git/
+.gitignore
+
+# ================================
+# OS files
+# ================================
+.DS_Store
+Thumbs.db
+
+# ================================
+# Build / distribution
+# ================================
+build/
+dist/
+*.egg-info/
+
+# ================================
+# Documentation / development files
+# ================================
+README.md
+
+# ================================
+# Local development scripts
+# ================================
+inspect_model.py
+run.py
+model_train.py
+
+# ================================
+# Docker / Compose development files
+# ================================
+docker-compose.yml
+compose.yaml
+Dockerfile
+Dockerfile.api
+Dockerfile.streamlit
