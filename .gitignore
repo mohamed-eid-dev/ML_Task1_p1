@@ -1,84 +1,49 @@
-# ================================
 # Virtual environments
-# ================================
 .venv/
 venv/
 env/
 
-# ================================
-# Environment variables / secrets
-# ================================
+# Environment variables and secrets
 .env
-.env.local
-.env.*.local
-
-# Keep the example environment file
+.env.*
 !.env.example
 
-# ================================
-# Python cache
-# ================================
+# Python cache and tooling
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
 
-# ================================
-# Jupyter Notebook
-# ================================
+# Jupyter
 .ipynb_checkpoints/
 
-# ================================
-# Testing / Coverage
-# ================================
-.pytest_cache/
+# Test and coverage output
 .coverage
 .coverage.*
 htmlcov/
 
-# ================================
-# Code quality caches
-# ================================
-.ruff_cache/
-.mypy_cache/
-
-# ================================
-# IDE settings
-# ================================
-.vscode/
-.idea/
-
-# ================================
-# OS files
-# ================================
-.DS_Store
-Thumbs.db
-
-# ================================
-# Build / distribution
-# ================================
+# Build and distribution
 build/
 dist/
 *.egg-info/
 
-# ================================
-# Logs
-# ================================
+# Logs and temporary files
 *.log
-
-# ================================
-# Temporary files
-# ================================
 *.tmp
 *.temp
 
-# ================================
-# Local test files
-# ================================
-*.local
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
 
-# ================================
-# Docker local overrides
-# ================================
+# Local overrides
+*.local
 docker-compose.override.yml
 compose.override.yaml

@@ -19,6 +19,7 @@ dependencies = [
     "ruff==0.14.0",
     "scikit-learn==1.7.2",
     "seaborn==0.13.2",
+    "streamlit>=1.66.1",
     "uvicorn>=0.54.0",
 ]
 

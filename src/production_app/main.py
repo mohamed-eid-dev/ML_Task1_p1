@@ -1,7 +1,11 @@
 import pandas as pd
 from production_app.config import FEATURE_NAME_MAPPING
 from production_app.logging_config import configure_logging
-from production_app.model_service import load_model, predict
+from production_app.model_service import (
+    load_model,
+    predict,
+    predict_batch as predict_batch_service,
+)
 from production_app.schemas import (
     BreastCancerInput,
     PredictionResponse,
@@ -35,7 +39,7 @@ def predict_one(data: BreastCancerInput):
     input_data = pd.DataFrame([data.model_dump()])
     input_data = input_data.rename(columns=FEATURE_NAME_MAPPING)
 
-    prediction = predict(input_data)[0]
+    prediction = predict(model, input_data)
 
     class_names = {
         0: "malignant",
@@ -56,7 +60,7 @@ def predict_batch(data: BatchPredictionRequest):
     input_data = pd.DataFrame([sample.model_dump() for sample in data.samples])
     input_data = input_data.rename(columns=FEATURE_NAME_MAPPING)
 
-    predictions = predict(input_data)
+    predictions = predict_batch_service(model, input_data)
 
     class_names = {
         0: "malignant",

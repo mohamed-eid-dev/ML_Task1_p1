@@ -822,6 +822,16 @@ uv sync
 uv sync
 ```
 
+## Test suite
+
+Run the automated unit and API tests with:
+
+```bash
+uv run python -m unittest discover -s tests -v
+```
+
+The test suite also runs automatically as a pre-commit hook.
+
 ## 2. Train the model
 
 ```bash
@@ -1001,7 +1011,6 @@ For a production deployment, additional considerations would include:
 
 Potential future improvements include:
 
-- Automated testing
 - CI/CD pipeline
 - Model versioning
 - Experiment tracking
